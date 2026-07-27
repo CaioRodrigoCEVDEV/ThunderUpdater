@@ -25,4 +25,7 @@ vendor/
 resource_windows_*.syso
 
 # Distribuição
-dist/
+dist/*
+!dist/
+!dist/ThunderUpdater-x86.exe
+!dist/ThunderUpdater-x64.exe

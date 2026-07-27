@@ -25,6 +25,7 @@ ThunderUpdaterGO/
 │   └── updater/         # processo de atualização
 ├── assets/
 ├── build/
+├── dist/                   # executáveis versionados
 ├── scripts/
 ├── README.md
 └── go.mod
@@ -137,14 +138,32 @@ Os executáveis prontos para Windows podem ser baixados na página de [Releases]
 
 ## Publicar uma nova versão
 
-Crie e envie uma tag de versão para iniciar automaticamente o build e a publicação dos executáveis:
+Os executáveis são gerados localmente pelos scripts oficiais e versionados em `dist/`. O GitHub Actions não compila o projeto: ele apenas cria a Release da tag e publica os arquivos encontrados nessa pasta.
+
+Gere os executáveis na raiz do projeto:
 
 ```bash
+./build/build-x86.sh
+./build/build-x64.sh
+```
+
+Ou gere os dois em sequência:
+
+```bash
+./build/build-all.sh
+```
+
+Confirme que `dist/ThunderUpdater-x86.exe` e `dist/ThunderUpdater-x64.exe` existem e, depois, envie o commit que contém os executáveis antes de criar a tag:
+
+```bash
+git add dist/ThunderUpdater-x86.exe dist/ThunderUpdater-x64.exe
+git commit -m "build: atualizar executáveis da versão"
+git push
 git tag v1.0.0
 git push origin v1.0.0
 ```
 
-Também é possível executar o workflow manualmente pela aba **Actions**, informando a versão no formato `v1.0.0`.
+A tag deve apontar para o commit que contém os dois `.exe`. O envio da tag `v*` inicia o workflow, que usa exatamente esse commit, verifica os arquivos versionados em `dist/` e os anexa à Release com o mesmo nome da tag.
 
 ### Fluxo da atualização
 
