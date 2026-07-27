@@ -131,6 +131,21 @@ chmod +x ./build/build-all.sh
 ./build/build-all.sh
 ```
 
+## Downloads
+
+Os executáveis prontos para Windows podem ser baixados na página de [Releases](../../releases) do repositório.
+
+## Publicar uma nova versão
+
+Crie e envie uma tag de versão para iniciar automaticamente o build e a publicação dos executáveis:
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+Também é possível executar o workflow manualmente pela aba **Actions**, informando a versão no formato `v1.0.0`.
+
 ### Fluxo da atualização
 
 Após iniciar, o atualizador:
