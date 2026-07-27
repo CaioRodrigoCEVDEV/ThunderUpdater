@@ -6,8 +6,9 @@
 *.dylib
 ThunderUpdaterGO
 
-# Build
-build/
+# Build artifacts (keep the build scripts versioned)
+build/*
+!build/*.sh
 
 # IDE
 .vscode/
